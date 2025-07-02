@@ -1,4 +1,6 @@
-export const postComments = (comments) => {
+import { signupLoginButtons } from "./signup-login-buttons"
+
+export const postComments = (comments, data) => {
     const wrapper = document.createElement('div')
     wrapper.className = 'post-comments'
     const heading = document.createElement('h4')
@@ -17,5 +19,29 @@ export const postComments = (comments) => {
         commentDiv.appendChild(username)
         wrapper.appendChild(commentDiv)
     })
+    let conditionalDiv // allow the user to add comment if authenticated
+    if (data.isAuthenticated) {
+        conditionalDiv = document.createElement('form')
+        conditionalDiv.className = 'comment-form'
+            const comment = document.createElement('input')
+            comment.type = 'text'
+            comment.className = 'comment'
+            comment.placeholder = 'Enter your opinion...'
+            const submitButton = document.createElement('button')
+            submitButton.type = 'submit'
+            submitButton.textContent = 'Submit'
+        conditionalDiv.appendChild(comment)
+        conditionalDiv.appendChild(submitButton)
+    } else {
+        conditionalDiv = document.createElement('div')
+        conditionalDiv.className = 'comment-div'
+            const comment = document.createElement('input')
+            comment.type = 'text'
+            comment.className = 'comment'
+            comment.placeholder = 'Login to comment...'
+        conditionalDiv.appendChild(comment)
+        conditionalDiv.appendChild(signupLoginButtons({redirectPage: 'view-post', postId: data.postId}))
+    }
+    wrapper.appendChild(conditionalDiv)
     return wrapper
 }
