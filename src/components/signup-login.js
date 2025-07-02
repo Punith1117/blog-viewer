@@ -5,6 +5,11 @@ export const signupLogin = (name, data) => {
     wrapper.className = `${name}-form`
         const heading = document.createElement('h3')
         heading.textContent = name
+        let message
+        if (data.message != undefined) {
+            message = document.createElement('p')
+            message.textContent = data.message
+        }
         const usernameLabel = document.createElement('label')
         usernameLabel.textContent = 'Username: '
         usernameLabel.className = 'username-label'
@@ -35,6 +40,9 @@ export const signupLogin = (name, data) => {
         buttons.appendChild(backButton)
         buttons.appendChild(submitButton)
     wrapper.appendChild(heading)
+    if (message != undefined) {
+        wrapper.appendChild(message)
+    }
     wrapper.appendChild(usernameLabel)
     wrapper.appendChild(passwordLabel)
     wrapper.appendChild(buttons)
