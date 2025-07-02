@@ -5,3 +5,15 @@ export const getAllPostsQuery = async () => {
         .then(res => res.json())
     return posts
 }
+
+export const getPostQuery = async (id) => {
+    const { posts } = await fetch(`${URL}/post/${id}`)
+        .then(res => res.json())
+    return posts
+}
+
+export const getPostCommentsQuery = async (id) => {
+    const { comments } = await fetch(`${URL}/post/${id}/comment`)
+        .then(res => res.json())
+    return comments
+}
