@@ -1,3 +1,5 @@
+import { redirect } from "../redirect"
+
 export const allPosts = (posts) => {
     const allPostsDiv = document.createElement('div')
     allPostsDiv.className = 'posts'
@@ -16,6 +18,7 @@ export const allPosts = (posts) => {
             const viewButton = document.createElement('button')
             viewButton.textContent = 'view'
             viewButton.className = 'view'
+            viewButton.addEventListener('click', () => redirect('view-post', {id: post.id}))
         postDiv.appendChild(title)
         postDiv.appendChild(content)
         postDiv.appendChild(username)
