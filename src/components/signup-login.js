@@ -11,6 +11,7 @@ export const signupLogin = (name, data) => {
             const username = document.createElement('input')
             username.type = 'text'
             username.name = 'username'
+            username.required = 'true'
         usernameLabel.appendChild(username)
         const passwordLabel = document.createElement('label')
         passwordLabel.textContent = 'Password: '
@@ -18,6 +19,7 @@ export const signupLogin = (name, data) => {
             const password = document.createElement('input')
             password.type = 'password'
             password.name = 'password'
+            password.required = 'true'
         passwordLabel.appendChild(password)
         const buttons = document.createElement('div')
         buttons.className = 'buttons'
