@@ -1,4 +1,6 @@
+import { loginQuery, signupQuery } from "../apiQueries"
 import { redirect } from "../redirect"
+import { saveJwt, saveUsername } from "../utilities"
 
 export const signupLogin = (name, data) => {
     const wrapper = document.createElement('form')
@@ -39,6 +41,34 @@ export const signupLogin = (name, data) => {
             submitButton.type = 'submit'
         buttons.appendChild(backButton)
         buttons.appendChild(submitButton)
+    wrapper.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        let res
+        if (name == 'login') {
+            try {
+                res = await loginQuery(username.value, password.value)
+                saveJwt(res.token)
+                saveUsername(res.user.username)
+                await redirect(data.redirectPage, data)
+            } catch (e) {
+                redirect('login', {
+                    ...data,
+                    message: e.message
+                })
+            }
+        } else {
+            try {
+                res = await signupQuery(username.value, password.value)
+                console.log(res)
+                await redirect('login', data)
+            } catch (e) {
+                redirect('signup', {
+                    ...data,
+                    message: e.message
+                })
+            }
+        }
+    })
     wrapper.appendChild(heading)
     if (message != undefined) {
         wrapper.appendChild(message)
