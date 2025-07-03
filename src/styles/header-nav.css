@@ -1,0 +1,36 @@
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 1rem;
+    
+    h1 {
+        font-size: max(3vw, 2rem);
+    }
+
+    .authenticated-user {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-weight: 600;
+            font-size: max(1vw, 1.2rem);
+        }
+    }
+}
+
+nav {
+    display: flex;
+    
+    button {
+        flex: 1;
+    }
+
+    .on-this-tab {
+        background-color: rgb(192, 192, 255);
+    }
+}

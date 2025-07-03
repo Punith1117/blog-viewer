@@ -1,0 +1,33 @@
+.posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1vw;
+    padding: 1vw;
+
+    .post {
+        position: relative;
+        border-radius: 1rem;
+        padding: 9px;
+        gap: 5px;
+        background-color: rgb(255, 214, 154);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+            font-size: max(1.5vw, 1.2rem);
+        }
+
+        .content {
+            font-size: max(1.1vw, 1rem);
+        }
+
+        .username {
+            color: grey;
+            position: absolute;
+            bottom: 3px;
+            right: 5px;
+        }
+    }
+}

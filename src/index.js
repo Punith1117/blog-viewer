@@ -1,5 +1,7 @@
 import { redirect } from "./redirect";
 import "./styles/reset.css";
+import "./styles/header-nav.css";
+import "./styles/posts.css";
 
 (async () => await redirect('posts'))()
 
