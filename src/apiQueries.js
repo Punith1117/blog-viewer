@@ -1,4 +1,4 @@
-const URL = 'http://localhost:3000'
+const URL = 'https://blog-api-p64x.onrender.com'
 
 export const getAllPostsQuery = async () => {
     const { posts } = await fetch(`${URL}/post`)
