@@ -1,0 +1,104 @@
+.view-post {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(193, 237, 255);
+    padding: 1vw;
+
+    .title {
+        font-size: max(1.3rem, 1.8vw);
+    }
+
+    .username {
+        color: grey;
+    }
+}
+
+.post-comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: burlywood;
+    gap: 2px;
+    padding: 1vw;
+
+    h4 {
+        font-size: max(1.2rem, 1.4vw);
+    }
+
+    .comment {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 224, 184);
+        padding: 5px;
+        border-radius: 0.7rem;
+        line-height: 0.7rem;
+        gap: 2px;
+
+        .username {
+            margin-left: auto;
+            color: grey;
+        }
+    }
+
+    .comment-div {
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .signup-login-buttons {
+            gap: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .comment-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.my-comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: burlywood;
+    gap: 10px;
+    padding: 1vw;
+
+
+    .comment {
+        background-color: rgb(255, 224, 184);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    .utilities {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        button {
+            background-color: rgb(149, 255, 197);
+            padding: 3px;
+            border-radius: 5px;
+        }
+    }
+}
