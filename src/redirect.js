@@ -12,6 +12,8 @@ export const redirect = async (page, data) => {
     const main = document.querySelector('main')
     switch (page) {
         case 'posts':
+            handleUserDiv()
+            handleNavClass('posts')
             let posts = await getAllPostsQuery()
             posts = posts.map(post => {
                 return {
@@ -22,6 +24,7 @@ export const redirect = async (page, data) => {
             main.replaceChildren(allPosts(posts))
             break
         case 'view-post':
+            handleUserDiv()
             let post = await getPostQuery(data.postId)
             let comments = await getPostCommentsQuery(data.postId)
             main.replaceChildren(viewPost(post, {redirectPage: data.redirectPage}), postComments(comments, {
@@ -41,6 +44,8 @@ export const redirect = async (page, data) => {
             main.replaceChildren(signupLogin('signup', data))
             break
         case 'my-comments':
+            handleUserDiv()
+            handleNavClass('my-comments')
             try {
                 const comments = await getMyComments(getJwt())
                 main.replaceChildren(myComments(comments))
@@ -52,5 +57,39 @@ export const redirect = async (page, data) => {
             break
         default:
             main.textContent = 'This page does not exit'
+    }
+}
+
+const handleUserDiv = () => {
+    let userDiv
+    if (getUsername() !== null) {
+        userDiv = document.querySelector('.authenticated-user')
+        userDiv.innerHTML = ''
+            let userGreeting = document.createElement('p')
+            userGreeting.textContent = 'Welcome, ' + getUsername()
+            let logoutButton = document.createElement('button')
+            logoutButton.textContent = 'logout'
+            logoutButton.addEventListener('click', async () => {
+                destroyUsername()
+                destroyJwt()
+                await redirect('posts')
+            })
+        userDiv.appendChild(userGreeting)
+        userDiv.appendChild(logoutButton)
+    } else {
+        userDiv = document.querySelector('.authenticated-user')
+        userDiv.innerHTML = ''
+    }
+}
+
+const handleNavClass = (page) => {
+    let postsButton = document.querySelector('.posts-button')
+    let myCommentsButton = document.querySelector('.my-comments-button')
+    if (page == 'posts') {
+        postsButton.classList.add('on-this-tab')
+        myCommentsButton.classList.remove('on-this-tab')
+    } else {
+        myCommentsButton.classList.add('on-this-tab')
+        postsButton.classList.remove('on-this-tab')
     }
 }
