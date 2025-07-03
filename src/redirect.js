@@ -22,7 +22,7 @@ export const redirect = async (page, data) => {
         case 'view-post':
             let post = await getPostQuery(data.postId)
             let comments = await getPostCommentsQuery(data.postId)
-            main.replaceChildren(viewPost(post), postComments(comments, {
+            main.replaceChildren(viewPost(post, {redirectPage: data.redirectPage}), postComments(comments, {
                 postId: data.postId,
                 isAuthenticated: (getJwt() === null) ? false : true,
                 username: getUsername()
