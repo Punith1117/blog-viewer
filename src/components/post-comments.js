@@ -1,3 +1,6 @@
+import { addComment } from "../apiQueries"
+import { redirect } from "../redirect"
+import { destroyJwt, destroyUsername, getJwt } from "../utilities"
 import { signupLoginButtons } from "./signup-login-buttons"
 
 export const postComments = (comments, data) => {
@@ -33,6 +36,22 @@ export const postComments = (comments, data) => {
             submitButton.type = 'submit'
             submitButton.textContent = 'Submit'
             submitButton.className = 'submit'
+        conditionalDiv.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            let form = e.target
+            let comment = form.elements['comment'].value
+            try {
+                await addComment(getJwt(), {
+                    postId: data.postId,
+                    content: comment
+                })
+            } catch (e) {
+                destroyJwt()
+                destroyUsername()
+                redirect('view-post', data)
+            }
+            redirect('view-post', data)
+        })
         conditionalDiv.appendChild(comment)
         conditionalDiv.appendChild(submitButton)
     } else {
