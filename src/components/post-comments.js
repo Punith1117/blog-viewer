@@ -1,4 +1,4 @@
-import { addComment } from "../apiQueries"
+import { addComment, deleteComment } from "../apiQueries"
 import { redirect } from "../redirect"
 import { destroyJwt, destroyUsername, getJwt } from "../utilities"
 import { signupLoginButtons } from "./signup-login-buttons"
@@ -19,8 +19,26 @@ export const postComments = (comments, data) => {
             const username = document.createElement('p')
             username.textContent = comment.user.username
             username.className = 'username'
+            let deleteButton
+            if (data.isAuthenticated && (data.username === comment.user.username)) {
+                deleteButton = document.createElement('button')
+                deleteButton.textContent = 'Delete'
+                deleteButton.className = 'delete'
+                deleteButton.addEventListener('click', async () => {
+                    try {
+                        await deleteComment(getJwt(), comment.id)
+                        await redirect('view-post', {postId: data.postId})
+                    } catch (e) {
+                        destroyJwt()
+                        destroyUsername()
+                        redirect('view-post', {postId: data.postId})
+                    }
+                })
+            }
         commentDiv.appendChild(content)
         commentDiv.appendChild(username)
+        if (deleteButton != undefined)
+            commentDiv.appendChild(deleteButton)
         wrapper.appendChild(commentDiv)
     })
     let conditionalDiv // allow the user to add comment if authenticated
