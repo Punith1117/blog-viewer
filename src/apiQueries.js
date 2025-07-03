@@ -87,3 +87,18 @@ export const deleteComment = async (token, commentId) => {
         }
     })
 }
+
+export const getMyComments = async (token) => {
+    const {comments} = await fetch(`${URL}/user/me/comment`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        }
+    }).then(res => {
+        if (!res.ok)
+            throw new Error(res.status)
+        return res.json()
+    })
+    
+    return comments
+}
