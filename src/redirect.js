@@ -4,7 +4,7 @@ import htmlTruncate from 'html-truncate'
 import { viewPost } from "./components/view-post"
 import { postComments } from "./components/post-comments"
 import { signupLogin } from "./components/signup-login"
-import { destroyJwt, destroyUsername, getJwt } from "./utilities"
+import { destroyJwt, destroyUsername, getJwt, getUsername } from "./utilities"
 
 export const redirect = async (page, data) => {
     const main = document.querySelector('main')
@@ -24,7 +24,8 @@ export const redirect = async (page, data) => {
             let comments = await getPostCommentsQuery(data.postId)
             main.replaceChildren(viewPost(post), postComments(comments, {
                 postId: data.postId,
-                isAuthenticated: (getJwt() === null) ? false : true
+                isAuthenticated: (getJwt() === null) ? false : true,
+                username: getUsername()
             }))
             break
         case 'login':
