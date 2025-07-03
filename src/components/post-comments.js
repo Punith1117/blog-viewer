@@ -12,6 +12,7 @@ export const postComments = (comments, data) => {
     comments.forEach(comment => {
         const commentDiv = document.createElement('div')
         commentDiv.className = 'comment'
+        commentDiv.dataset.id = comment.id
             const content = document.createElement('p')
             content.textContent = comment.content
             content.className = 'content'
