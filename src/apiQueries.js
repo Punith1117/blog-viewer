@@ -55,3 +55,22 @@ export const signupQuery = async (username, password) => {
         return await res.json()
     })
 }
+
+
+export const addComment = async (token, commentDetails) => {
+    await fetch(`${URL}/user/me/comment`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            postId: commentDetails.postId,
+            content: commentDetails.content
+        })
+    }).then(res => {
+        if (!res.ok) {
+            throw new Error(res.status)
+        }
+    })
+}
