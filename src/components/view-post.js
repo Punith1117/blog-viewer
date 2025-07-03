@@ -1,6 +1,6 @@
 import { redirect } from "../redirect"
 
-export const viewPost = (post) => {
+export const viewPost = (post, data) => {
     const wrapper = document.createElement('div')
     wrapper.className = 'view-post'
         const title = document.createElement('h3')
@@ -15,7 +15,7 @@ export const viewPost = (post) => {
         const backButton = document.createElement('button')
         backButton.textContent = 'back'
         backButton.className = 'back-button'
-        backButton.addEventListener('click', () => redirect('posts'))
+        backButton.addEventListener('click', () => redirect(data.redirectPage))
     wrapper.appendChild(title)
     wrapper.appendChild(content)
     wrapper.appendChild(username)
