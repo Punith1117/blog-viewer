@@ -18,7 +18,7 @@ export const allPosts = (posts) => {
             const viewButton = document.createElement('button')
             viewButton.textContent = 'view'
             viewButton.className = 'view'
-            viewButton.addEventListener('click', () => redirect('view-post', {postId: post.id}))
+            viewButton.addEventListener('click', () => redirect('view-post', {postId: post.id, redirectPage: 'posts'}))
         postDiv.appendChild(title)
         postDiv.appendChild(content)
         postDiv.appendChild(username)
