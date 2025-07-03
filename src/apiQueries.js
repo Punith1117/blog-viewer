@@ -74,3 +74,16 @@ export const addComment = async (token, commentDetails) => {
         }
     })
 }
+
+export const deleteComment = async (token, commentId) => {
+    await fetch(`${URL}/user/me/comment/${commentId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        }
+    }).then(res => {
+        if (!res.ok) {
+            throw new Error(res.status)
+        }
+    })
+}
