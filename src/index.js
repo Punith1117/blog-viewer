@@ -3,6 +3,7 @@ import "./styles/reset.css";
 import "./styles/header-nav.css";
 import "./styles/posts.css";
 import "./styles/view-post-comments.css";
+import "./styles/signup-login.css";
 
 (async () => await redirect('posts'))()
 
