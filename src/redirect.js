@@ -7,8 +7,10 @@ import { signupLogin } from "./components/signup-login"
 import { destroyJwt, destroyUsername, getJwt, getUsername } from "./utilities"
 import { signupLoginButtons } from "./components/signup-login-buttons"
 import { myComments } from "./components/my-comments"
+import { displayLoading } from "./components/loading"
 
 export const redirect = async (page, data) => {
+    displayLoading()
     const main = document.querySelector('main')
     switch (page) {
         case 'posts':
