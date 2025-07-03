@@ -5,6 +5,7 @@ export const postComments = (comments, data) => {
     wrapper.className = 'post-comments'
     const heading = document.createElement('h4')
     heading.textContent = 'Comments'
+    wrapper.appendChild(heading)
     comments.forEach(comment => {
         const commentDiv = document.createElement('div')
         commentDiv.className = 'comment'
@@ -14,7 +15,6 @@ export const postComments = (comments, data) => {
             const username = document.createElement('p')
             username.textContent = comment.user.username
             username.className = 'username'
-        commentDiv.appendChild(heading)
         commentDiv.appendChild(content)
         commentDiv.appendChild(username)
         wrapper.appendChild(commentDiv)
