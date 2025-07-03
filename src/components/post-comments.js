@@ -26,10 +26,13 @@ export const postComments = (comments, data) => {
             const comment = document.createElement('input')
             comment.type = 'text'
             comment.className = 'comment'
+            comment.name = 'comment'
+            comment.required = 'true'
             comment.placeholder = 'Enter your opinion...'
             const submitButton = document.createElement('button')
             submitButton.type = 'submit'
             submitButton.textContent = 'Submit'
+            submitButton.className = 'submit'
         conditionalDiv.appendChild(comment)
         conditionalDiv.appendChild(submitButton)
     } else {
