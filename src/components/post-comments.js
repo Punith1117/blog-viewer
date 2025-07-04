@@ -27,11 +27,11 @@ export const postComments = (comments, data) => {
                 deleteButton.addEventListener('click', async () => {
                     try {
                         await deleteComment(getJwt(), comment.id)
-                        await redirect('view-post', {postId: data.postId})
+                        await redirect('view-post', {postId: data.postId, redirectPage: data.redirectPage})
                     } catch (e) {
                         destroyJwt()
                         destroyUsername()
-                        redirect('view-post', {postId: data.postId})
+                        redirect('view-post', {postId: data.postId, redirectPage: data.redirectPage})
                     }
                 })
             }
