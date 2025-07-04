@@ -49,7 +49,7 @@ export const signupLogin = (name, data) => {
                 res = await loginQuery(username.value, password.value)
                 saveJwt(res.token)
                 saveUsername(res.user.username)
-                await redirect(data.redirectPage, data)
+                await redirect(data.redirectPage, {...data, redirectPage: data.rootRedirectPage})
             } catch (e) {
                 redirect('login', {
                     ...data,

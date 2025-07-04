@@ -32,7 +32,8 @@ export const redirect = async (page, data) => {
             main.replaceChildren(viewPost(post, {redirectPage: data.redirectPage}), postComments(comments, {
                 postId: data.postId,
                 isAuthenticated: (getJwt() === null) ? false : true,
-                username: getUsername()
+                username: getUsername(),
+                redirectPage: data.redirectPage
             }))
             break
         case 'login':

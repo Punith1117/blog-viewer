@@ -81,7 +81,7 @@ export const postComments = (comments, data) => {
             comment.className = 'comment'
             comment.placeholder = 'Login to comment...'
         conditionalDiv.appendChild(comment)
-        conditionalDiv.appendChild(signupLoginButtons({redirectPage: 'view-post', postId: data.postId}))
+        conditionalDiv.appendChild(signupLoginButtons({redirectPage: 'view-post', postId: data.postId, rootRedirectPage: data.redirectPage}))
     }
     wrapper.appendChild(conditionalDiv)
     return wrapper
